@@ -23,12 +23,14 @@ contract CDzSwapRouter02 is ICDzSwapRouter02 {
     }
 
     constructor(address _factory, address _WETH) public {
+        require(_factory != address(0), "_factory is zero address!");
+        require(_WETH != address(0), "_WETH is zero address!");
         factory = _factory;
         WETH = _WETH;
     }
 
     receive() external payable {
-        assert(msg.sender == WETH); // only accept ETH via fallback from the WETH contract
+        require(msg.sender == WETH, "only accept ETH via fallback from the WETH contract"); // only accept ETH via fallback from the WETH contract
     }
 
     // **** ADD LIQUIDITY ****
@@ -402,12 +404,12 @@ contract CDzSwapRouter02 is ICDzSwapRouter02 {
     }
 
     // **** LIBRARY FUNCTIONS ****
-    function quote(uint amountA, uint reserveA, uint reserveB) public pure virtual override returns (uint amountB) {
+    function quote(uint amountA, uint reserveA, uint reserveB) external pure virtual override returns (uint amountB) {
         return CDzSwapLibrary.quote(amountA, reserveA, reserveB);
     }
 
     function getAmountOut(uint amountIn, uint reserveIn, uint reserveOut)
-        public
+        external
         pure
         virtual
         override
@@ -417,7 +419,7 @@ contract CDzSwapRouter02 is ICDzSwapRouter02 {
     }
 
     function getAmountIn(uint amountOut, uint reserveIn, uint reserveOut)
-        public
+        external
         pure
         virtual
         override
@@ -427,7 +429,7 @@ contract CDzSwapRouter02 is ICDzSwapRouter02 {
     }
 
     function getAmountsOut(uint amountIn, address[] memory path)
-        public
+        external
         view
         virtual
         override
@@ -437,7 +439,7 @@ contract CDzSwapRouter02 is ICDzSwapRouter02 {
     }
 
     function getAmountsIn(uint amountOut, address[] memory path)
-        public
+        external
         view
         virtual
         override

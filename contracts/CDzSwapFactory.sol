@@ -15,6 +15,7 @@ contract CDzSwapFactory is ICDzSwapFactory {
     event PairCreated(address indexed token0, address indexed token1, address pair, uint);
 
     constructor(address _feeToSetter) public {
+        require(_feeToSetter != address(0), "_feeToSetter is zero address!");
         feeToSetter = _feeToSetter;
     }
 
@@ -46,6 +47,7 @@ contract CDzSwapFactory is ICDzSwapFactory {
 
     function setFeeToSetter(address _feeToSetter) external override {
         require(msg.sender == feeToSetter, 'CDzSwap: FORBIDDEN');
+        require(_feeToSetter != address(0), "_feeToSetter is zero address!");
         feeToSetter = _feeToSetter;
     }
 }
