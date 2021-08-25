@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 
-pragma solidity >=0.5.0;
+pragma solidity =0.6.12;
 
 import '../interfaces/ICDzSwapPair.sol';
 
@@ -23,7 +23,7 @@ library CDzSwapLibrary {
                 hex'ff',
                 factory,
                 keccak256(abi.encodePacked(token0, token1)),
-                hex'6dcf89e06ca8f07422fa53a5e824257a1736dafaad1bd57e603a449fbb2f4281' // init code hash
+                hex'e8c2951d604dbb1ce366858d75f6b5d91acac71e5d3c666150a902d81d7afda9' // init code hash
             ))));
     }
 

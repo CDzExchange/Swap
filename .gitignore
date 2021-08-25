@@ -5,6 +5,7 @@ cache
 artifacts
 deployments
 abi
+types
 .idea
 
 node_modules
